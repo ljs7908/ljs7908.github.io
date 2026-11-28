@@ -151,6 +151,10 @@
     border-top:1px solid var(--ink);border-right:1px solid var(--ink);transform:translateY(-50%) rotate(45deg);
   }
 
+  .flow.five{grid-template-columns:repeat(5,1fr)}
+  .goal{margin-top:18px;padding:14px 18px;border-left:3px solid var(--deep);background:var(--sheet);font-size:15px;max-width:var(--measure)}
+  .goal b{display:block;font-size:13px;font-weight:500;color:var(--steel);margin-bottom:2px}
+
   /* modernization: version ledger */
   .ledger{width:100%;border-collapse:collapse;margin-top:22px;font-size:15px;background:var(--sheet);font-variant-numeric:tabular-nums}
   .ledger th,.ledger td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
@@ -202,6 +206,11 @@
     .flow li:nth-child(3){border-left:0}
     .flow li:nth-child(n+3){border-top:1px solid var(--ink)}
     .flow li:nth-child(3)::after{display:none}
+    .flow.five{grid-template-columns:1fr 1fr}
+    .flow.five li:nth-child(odd){border-left:0}
+    .flow.five li:nth-child(odd)::after{display:none}
+    .flow.five li:nth-child(4){border-left:1px solid var(--ink)}
+    .flow.five li:nth-child(4)::after{display:block}
   }
   @media (max-width:680px){
     body{font-size:16px}
@@ -217,6 +226,9 @@
     .flow{grid-template-columns:1fr}
     .flow li + li{border-left:0;border-top:1px solid var(--ink)}
     .flow li + li::after{display:none}
+    .flow.five{grid-template-columns:1fr}
+    .flow.five li:nth-child(4){border-left:0}
+    .flow.five li:nth-child(4)::after{display:none}
     .creds{grid-template-columns:1fr}
     .contact{grid-template-columns:1fr;padding:44px 26px}
     section{padding-top:80px}
@@ -294,6 +306,23 @@
     <article class="project">
       <div class="meta"><span class="when">2024 – 현재</span>위프로커넥티드서비시즈인크</div>
       <div class="body">
+        <h3>Jira 티켓 기반 개발 분석 표준화 시스템</h3>
+        <p>업무 요청은 Jira 티켓과 첨부 PPT·PDF로 전달됩니다. 티켓 번호만 넣으면 사내 AI가 요구사항을 정리하고, 영향받는 소스와 화면·배치를 찾아 변경점을 추천하고, 테스트 데이터를 확인하거나 만드는 방법까지 안내합니다. 소스 반영 후 검증과 커밋은 개발자가 직접 하도록 경계를 두었습니다.</p>
+        <ol class="flow five" aria-label="처리 흐름">
+          <li><b>티켓 수집</b>설명·코멘트·첨부 PPT/PDF 조회</li>
+          <li><b>요구사항 분석</b>흩어진 요청을 정리</li>
+          <li><b>영향도 분석</b>관련 소스·화면·배치 탐색</li>
+          <li><b>변경점 추천</b>수정 위치와 방법 제시</li>
+          <li><b>테스트 데이터</b>확인·생성 방법 안내</li>
+        </ol>
+        <p class="goal"><b>만든 이유</b>한국·인도 개발자가 함께 일하는 조직에서, 숙련도나 언어와 관계없이 누구나 같은 수준의 분석 결과를 내도록 하기 위해서입니다.</p>
+        <div class="tags"><span>사내 AI(Cline)</span><span>Jira API</span><span>Python</span><span>Oracle</span><span>GitHub Enterprise</span></div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="meta"><span class="when">2024 – 현재</span>위프로커넥티드서비시즈인크</div>
+      <div class="body">
         <h3>Oracle SQL 튜닝 자동화</h3>
         <p>느린 쿼리를 넣으면 실행계획·스키마·인덱스 정보를 모아 사내망 LLM에 보내고, 튜닝 방향과 가상 인덱스를 추천받는 도구입니다.</p>
         <ol class="flow" aria-label="처리 흐름">
@@ -327,7 +356,7 @@
             <tr><th scope="row">Java</th><td class="from">JDK 1.6</td><td class="to">OpenJDK 11</td></tr>
             <tr><th scope="row">WAS</th><td class="from">JEUS</td><td class="to">WebLogic 14.1.1 + 보안 패치</td></tr>
             <tr><th scope="row">형상관리</th><td class="from">SVN</td><td class="to">Git</td></tr>
-            <tr><th scope="row">이슈관리</th><td class="from">Jira 4.3</td><td class="to">Jira 10.x</td></tr>
+            <tr><th scope="row">이슈관리</th><td class="from">Jira 4.3</td><td class="to">Jira 11.x</td></tr>
             <tr><th scope="row">배포</th><td class="from">Jenkins 구버전</td><td class="to">Jenkins 업그레이드 · CI/CD 고도화</td></tr>
           </tbody>
         </table>
@@ -367,8 +396,9 @@
           <ul>
             <li>10억 원 규모 금형양산시스템 프로젝트 PM, 금형 ERP·SCM 개발/유지보수</li>
             <li>RPA 대체 자동화 시스템 개발(10억 원 절감), Oracle SQL 튜닝 자동화 PoC</li>
+            <li>Jira 티켓 기반 개발 분석 표준화 시스템 개발 (요구사항·영향도 분석, 변경점·테스트 데이터 추천)</li>
             <li>MCP 서버, RAG 챗봇, 오류분석 PoC 개발</li>
-            <li>JDK 1.6→OpenJDK 11, JEUS→WebLogic 14.1.1, Jira 4.3→10.x, SVN→Git, Jenkins CI/CD</li>
+            <li>JDK 1.6→OpenJDK 11, JEUS→WebLogic 14.1.1, Jira 4.3→11.x, SVN→Git, Jenkins CI/CD</li>
             <li>개인정보 암호화(DKMS) 적용</li>
           </ul>
         </div>
